@@ -17,4 +17,19 @@ public enum CaptureSource: Equatable, Sendable {
         width: Int,
         height: Int
     )
+
+    /// Checks whether the selected source has valid values
+    public var isValid: Bool {
+        switch self {
+
+        case .display(let id):
+            return !id.isEmpty
+
+        case .window(let id):
+            return !id.isEmpty
+
+        case .region(_, _, let width, let height):
+            return width > 0 && height > 0
+        }
+    }
 }
